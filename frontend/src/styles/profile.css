@@ -1,0 +1,274 @@
+/* Profile Page Styles */
+
+.profile-container {
+  @apply min-h-screen bg-vois-snow;
+}
+
+.profile-content {
+  @apply max-w-4xl mx-auto px-4 pt-20;
+}
+
+.profile-loading {
+  @apply max-w-4xl mx-auto px-4 pt-20;
+}
+
+.profile-loading-header {
+  @apply vois-skeleton h-64 mb-8;
+}
+
+.profile-loading-grid {
+  @apply grid grid-cols-3 gap-4;
+}
+
+.profile-loading-item {
+  @apply vois-skeleton h-64;
+}
+
+.profile-not-found {
+  @apply max-w-4xl mx-auto px-4 pt-20 text-center;
+}
+
+.profile-not-found-content {
+  @apply py-16;
+}
+
+.profile-not-found-title {
+  @apply text-2xl font-black text-deep-slate mb-2;
+}
+
+.profile-not-found-subtitle {
+  @apply text-muted-slate;
+}
+
+.profile-header {
+  @apply vois-card p-8 mb-8;
+}
+
+.profile-header-content {
+  @apply flex flex-col md:flex-row items-center gap-8;
+}
+
+.profile-avatar-container {
+  @apply vois-avatar vois-avatar-live;
+}
+
+.profile-avatar {
+  @apply w-32 h-32 rounded-full object-cover;
+}
+
+.profile-avatar-placeholder {
+  @apply w-32 h-32 bg-gradient-to-r from-electric-indigo to-rose-pink rounded-full flex items-center justify-center;
+}
+
+.profile-avatar-icon {
+  @apply w-16 h-16 text-white;
+}
+
+.profile-info {
+  @apply flex-1 text-center md:text-left;
+}
+
+.profile-name {
+  @apply text-4xl font-black text-deep-slate mb-2;
+}
+
+.profile-username {
+  @apply vois-section-label mb-4;
+}
+
+.profile-bio {
+  @apply text-muted-slate mb-6 max-w-md;
+}
+
+.profile-stats {
+  @apply flex justify-center md:justify-start gap-8 mb-6;
+}
+
+.profile-stat {
+  @apply text-center;
+}
+
+.profile-stat-number {
+  @apply text-2xl font-black text-deep-slate;
+}
+
+.profile-stat-label {
+  @apply vois-meta text-muted-slate;
+}
+
+.profile-actions {
+  @apply flex gap-4 justify-center md:justify-start;
+}
+
+.profile-edit-btn {
+  @apply vois-btn-secondary flex items-center gap-2;
+}
+
+.profile-follow-btn {
+  @apply flex items-center gap-2 px-6 py-3 rounded-full font-black text-xs uppercase tracking-[0.3em] transition-all duration-300 disabled:opacity-50;
+}
+
+.profile-follow-btn.following {
+  @apply bg-slate-100 text-muted-slate hover:bg-red-50 hover:text-red-600;
+}
+
+.profile-follow-btn.not-following {
+  @apply vois-btn-primary;
+}
+
+.profile-message-btn {
+  @apply vois-btn-secondary;
+}
+
+.profile-tabs {
+  @apply flex justify-center mb-8;
+}
+
+.profile-tabs-container {
+  @apply glass-surface rounded-full p-2 flex gap-2;
+}
+
+.profile-tab {
+  @apply flex items-center gap-2 px-6 py-3 rounded-full font-black text-xs uppercase tracking-[0.3em] transition-all duration-300;
+}
+
+.profile-tab.active {
+  @apply bg-electric-indigo text-white;
+}
+
+.profile-tab.inactive {
+  @apply text-muted-slate hover:text-deep-slate;
+}
+
+.profile-content-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8;
+}
+
+.profile-empty-state {
+  @apply text-center py-16;
+}
+
+.profile-empty-icon-container {
+  @apply w-24 h-24 bg-slate-100 rounded-3xl flex items-center justify-center mx-auto mb-6;
+}
+
+.profile-empty-icon {
+  @apply w-12 h-12 text-muted-slate;
+}
+
+.profile-empty-title {
+  @apply text-2xl font-black text-deep-slate mb-2;
+}
+
+.profile-empty-subtitle {
+  @apply text-muted-slate;
+}
+
+/* Profile post grid with masonry */
+.profile-post-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-max;
+}
+
+.profile-post-item {
+  @apply transition-all duration-500 ease-in-out;
+}
+
+.profile-post-item:hover {
+  @apply transform scale-[1.02] -translate-y-1 shadow-xl;
+}
+
+/* Masonry layout for profile posts */
+.profile-post-item.masonry-wide {
+  @apply col-span-2 row-span-1;
+}
+
+.profile-post-item.masonry-tall {
+  @apply col-span-1 row-span-2;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .profile-post-item.masonry-wide {
+    @apply col-span-1;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-header-content {
+    @apply flex-col gap-6;
+  }
+  
+  .profile-name {
+    @apply text-3xl;
+  }
+  
+  .profile-stats {
+    @apply gap-6;
+  }
+  
+  .profile-actions {
+    @apply flex-col gap-3;
+  }
+  
+  .profile-content-grid {
+    @apply grid-cols-1 gap-6;
+  }
+  
+  .profile-post-item.masonry-wide,
+  .profile-post-item.masonry-tall {
+    @apply col-span-1 row-span-1;
+  }
+}
+
+@media (max-width: 640px) {
+  .profile-content {
+    @apply px-4 pt-16;
+  }
+  
+  .profile-header {
+    @apply p-6;
+  }
+  
+  .profile-name {
+    @apply text-2xl;
+  }
+  
+  .profile-stats {
+    @apply gap-4;
+  }
+  
+  .profile-stat-number {
+    @apply text-xl;
+  }
+}
+
+/* Beautiful animations */
+@keyframes profile-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profile-header {
+  animation: profile-slide-up 0.6s ease-out;
+}
+
+.profile-tabs {
+  animation: profile-slide-up 0.8s ease-out;
+}
+
+.profile-post-item {
+  animation: profile-slide-up 0.6s ease-out;
+}
+
+.profile-post-item:nth-child(1) { animation-delay: 0.1s; }
+.profile-post-item:nth-child(2) { animation-delay: 0.2s; }
+.profile-post-item:nth-child(3) { animation-delay: 0.3s; }
+.profile-post-item:nth-child(4) { animation-delay: 0.4s; }
+.profile-post-item:nth-child(5) { animation-delay: 0.5s; }
+.profile-post-item:nth-child(6) { animation-delay: 0.6s; }

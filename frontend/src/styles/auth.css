@@ -1,0 +1,202 @@
+/* Authentication Pages Styles */
+
+.auth-container {
+  @apply min-h-screen flex;
+}
+
+.auth-brand-panel {
+  @apply hidden lg:flex lg:w-1/2 bg-gradient-to-br from-electric-indigo via-indigo-600 to-blue-700 relative overflow-hidden;
+}
+
+.auth-brand-overlay {
+  @apply absolute inset-0 bg-gradient-to-br from-electric-indigo/90 to-blue-700/90;
+}
+
+.auth-brand-content {
+  @apply relative z-10 flex flex-col justify-between p-12 text-white;
+}
+
+.auth-brand-logo {
+  @apply flex items-center gap-3;
+}
+
+.auth-brand-logo-icon {
+  @apply w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center;
+}
+
+.auth-brand-main {
+  @apply space-y-8;
+}
+
+.auth-brand-title {
+  @apply text-6xl font-black leading-tight mb-6;
+}
+
+.auth-brand-subtitle {
+  @apply text-xl text-white/80 leading-relaxed max-w-md;
+}
+
+.auth-brand-decoration {
+  @apply opacity-20;
+}
+
+.auth-brand-decoration-circle {
+  @apply w-32 h-32 bg-white/10 rounded-full blur-xl;
+}
+
+.auth-form-panel {
+  @apply flex-1 flex items-center justify-center p-8 lg:p-12;
+}
+
+.auth-form-container {
+  @apply w-full max-w-md space-y-8;
+}
+
+.auth-mobile-logo {
+  @apply lg:hidden flex items-center justify-center gap-3 mb-8;
+}
+
+.auth-mobile-logo-icon {
+  @apply w-8 h-8 bg-electric-indigo rounded-lg flex items-center justify-center;
+}
+
+.auth-header {
+  @apply text-center lg:text-left;
+}
+
+.auth-title {
+  @apply text-4xl font-black text-deep-slate mb-2;
+}
+
+.auth-subtitle {
+  @apply text-muted-slate;
+}
+
+.auth-error {
+  @apply bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-2xl text-sm;
+}
+
+.auth-form {
+  @apply space-y-6;
+}
+
+.auth-field {
+  /* Field container styles handled by individual field components */
+}
+
+.auth-field-label {
+  @apply vois-section-label block mb-3;
+}
+
+.auth-field-input-container {
+  @apply relative;
+}
+
+.auth-field-icon {
+  @apply absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-slate;
+}
+
+.auth-field-input {
+  @apply vois-input w-full;
+}
+
+.auth-field-input-with-icon {
+  @apply vois-input w-full pl-12;
+}
+
+.auth-field-input-with-action {
+  @apply vois-input w-full pr-12;
+}
+
+.auth-field-action {
+  @apply absolute right-4 top-1/2 transform -translate-y-1/2 text-muted-slate hover:text-deep-slate transition-colors;
+}
+
+.auth-submit-btn {
+  @apply vois-btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.auth-divider {
+  @apply relative;
+}
+
+.auth-divider-line {
+  @apply absolute inset-0 flex items-center;
+}
+
+.auth-divider-border {
+  @apply w-full border-t border-slate-200;
+}
+
+.auth-divider-text {
+  @apply relative flex justify-center text-sm;
+}
+
+.auth-divider-label {
+  @apply vois-section-label bg-vois-snow px-4;
+}
+
+.auth-social-grid {
+  @apply grid grid-cols-2 gap-4;
+}
+
+.auth-social-btn {
+  @apply vois-btn-secondary flex items-center justify-center gap-2;
+}
+
+.auth-link-container {
+  @apply text-center;
+}
+
+.auth-link-text {
+  @apply text-muted-slate;
+}
+
+.auth-link {
+  @apply text-electric-indigo font-black hover:text-indigo-600 transition-colors;
+}
+
+/* Beautiful animations for auth pages */
+@keyframes auth-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.auth-form-container {
+  animation: auth-slide-in 0.6s ease-out;
+}
+
+.auth-brand-content {
+  animation: auth-slide-in 0.8s ease-out;
+}
+
+/* Responsive improvements */
+@media (max-width: 1024px) {
+  .auth-brand-title {
+    @apply text-4xl;
+  }
+  
+  .auth-title {
+    @apply text-3xl;
+  }
+}
+
+@media (max-width: 640px) {
+  .auth-form-panel {
+    @apply p-4;
+  }
+  
+  .auth-brand-title {
+    @apply text-3xl;
+  }
+  
+  .auth-title {
+    @apply text-2xl;
+  }
+}

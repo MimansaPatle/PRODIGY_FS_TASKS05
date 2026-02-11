@@ -1,0 +1,363 @@
+/* Explore Page Styles */
+
+.explore-container {
+  @apply min-h-screen bg-vois-snow;
+}
+
+.explore-content {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20;
+}
+
+.explore-header {
+  @apply mb-8;
+}
+
+.explore-title {
+  @apply vois-display mb-2;
+}
+
+.explore-subtitle {
+  @apply text-muted-slate text-lg;
+}
+
+.explore-search-container {
+  @apply mb-8;
+}
+
+.explore-search-input-container {
+  @apply relative max-w-md;
+}
+
+.explore-search-icon {
+  @apply absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-slate;
+}
+
+.explore-search-input {
+  @apply vois-input w-full pl-12;
+}
+
+.explore-search-results {
+  @apply mt-4 vois-card p-4 max-w-md;
+}
+
+.explore-search-results-title {
+  @apply vois-section-label mb-3;
+}
+
+.explore-search-results-list {
+  @apply space-y-3;
+}
+
+.explore-search-result-item {
+  @apply flex items-center gap-3 p-2 rounded-xl hover:bg-slate-50 transition-colors;
+}
+
+.explore-search-result-avatar {
+  @apply vois-avatar;
+}
+
+.explore-search-result-avatar-img {
+  @apply w-8 h-8 rounded-full object-cover;
+}
+
+.explore-search-result-avatar-placeholder {
+  @apply w-8 h-8 bg-gradient-to-r from-electric-indigo to-rose-pink rounded-full flex items-center justify-center;
+}
+
+.explore-search-result-avatar-icon {
+  @apply w-4 h-4 text-white;
+}
+
+.explore-search-result-info {
+  @apply flex-1 min-w-0;
+}
+
+.explore-search-result-name {
+  @apply font-medium text-deep-slate text-sm;
+}
+
+.explore-search-result-username {
+  @apply vois-meta text-muted-slate;
+}
+
+.explore-layout {
+  @apply flex gap-8;
+}
+
+.explore-main {
+  @apply flex-1;
+}
+
+.explore-tabs {
+  @apply flex justify-center mb-8;
+}
+
+.explore-tabs-container {
+  @apply glass-surface rounded-full p-2 flex gap-2;
+}
+
+.explore-tab {
+  @apply flex items-center gap-2 px-6 py-3 rounded-full font-black text-xs uppercase tracking-[0.3em] transition-all duration-300;
+}
+
+.explore-tab.active {
+  @apply bg-electric-indigo text-white;
+}
+
+.explore-tab.inactive {
+  @apply text-muted-slate hover:text-deep-slate;
+}
+
+.explore-tab-icon {
+  @apply w-4 h-4;
+}
+
+.explore-content-area {
+  /* Content area styles handled by individual sections */
+}
+
+.explore-loading-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 auto-rows-max;
+}
+
+.explore-loading-item {
+  @apply vois-skeleton h-80;
+}
+
+.explore-posts-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 auto-rows-max;
+}
+
+.explore-post-item {
+  @apply transition-all duration-500 ease-in-out;
+}
+
+.explore-post-item:hover {
+  @apply transform scale-[1.02] -translate-y-1 shadow-xl;
+}
+
+.explore-post-item.masonry-wide {
+  @apply col-span-2 row-span-1;
+}
+
+.explore-post-item.masonry-tall {
+  @apply col-span-1 row-span-2;
+}
+
+.explore-artists-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.explore-artist-card {
+  @apply vois-card p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl;
+}
+
+.explore-artist-header {
+  @apply flex items-center gap-4 mb-4;
+}
+
+.explore-artist-avatar {
+  @apply vois-avatar vois-avatar-live;
+}
+
+.explore-artist-avatar-img {
+  @apply w-16 h-16 rounded-full object-cover;
+}
+
+.explore-artist-avatar-placeholder {
+  @apply w-16 h-16 bg-gradient-to-r from-electric-indigo to-rose-pink rounded-full flex items-center justify-center;
+}
+
+.explore-artist-avatar-icon {
+  @apply w-8 h-8 text-white;
+}
+
+.explore-artist-info {
+  @apply flex-1;
+}
+
+.explore-artist-name {
+  @apply font-black text-deep-slate hover:text-electric-indigo transition-colors;
+}
+
+.explore-artist-username {
+  @apply vois-section-label;
+}
+
+.explore-artist-followers {
+  @apply vois-meta text-muted-slate;
+}
+
+.explore-artist-bio {
+  @apply text-muted-slate text-sm mb-4 line-clamp-2;
+}
+
+.explore-artist-stats {
+  @apply flex justify-between items-center mb-4;
+}
+
+.explore-artist-stat {
+  @apply text-center;
+}
+
+.explore-artist-stat-number {
+  @apply font-black text-deep-slate;
+}
+
+.explore-artist-stat-label {
+  @apply vois-meta text-muted-slate;
+}
+
+.explore-artist-cta {
+  @apply vois-btn-primary w-full block text-center;
+}
+
+.explore-tags-grid {
+  @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4;
+}
+
+.explore-tag-card {
+  @apply vois-card p-6 text-center hover:scale-100 transition-all duration-300;
+}
+
+.explore-tag-icon-container {
+  @apply w-16 h-16 bg-gradient-to-r from-electric-indigo to-rose-pink rounded-2xl flex items-center justify-center mx-auto mb-4;
+}
+
+.explore-tag-icon {
+  @apply w-8 h-8 text-white;
+}
+
+.explore-tag-name {
+  @apply font-black text-deep-slate mb-2;
+}
+
+.explore-tag-count {
+  @apply vois-meta text-muted-slate;
+}
+
+.explore-empty-state {
+  @apply text-center py-16;
+}
+
+.explore-empty-state.full-width {
+  @apply col-span-full;
+}
+
+.explore-empty-icon-container {
+  @apply w-24 h-24 bg-slate-100 rounded-3xl flex items-center justify-center mx-auto mb-6;
+}
+
+.explore-empty-icon {
+  @apply w-12 h-12 text-muted-slate;
+}
+
+.explore-empty-title {
+  @apply text-2xl font-black text-deep-slate mb-2;
+}
+
+.explore-empty-subtitle {
+  @apply text-muted-slate;
+}
+
+/* Responsive design */
+@media (max-width: 1280px) {
+  .explore-posts-grid {
+    @apply grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
+  }
+  
+  .explore-post-item.masonry-wide {
+    @apply col-span-1;
+  }
+}
+
+@media (max-width: 1024px) {
+  .explore-layout {
+    @apply block;
+  }
+  
+  .explore-artists-grid {
+    @apply grid-cols-1 md:grid-cols-2;
+  }
+  
+  .explore-tags-grid {
+    @apply grid-cols-2 md:grid-cols-3;
+  }
+}
+
+@media (max-width: 768px) {
+  .explore-posts-grid {
+    @apply grid-cols-1 gap-6;
+  }
+  
+  .explore-post-item.masonry-wide,
+  .explore-post-item.masonry-tall {
+    @apply col-span-1 row-span-1;
+  }
+  
+  .explore-artists-grid {
+    @apply grid-cols-1;
+  }
+  
+  .explore-tags-grid {
+    @apply grid-cols-2;
+  }
+  
+  .explore-title {
+    @apply text-4xl;
+  }
+}
+
+@media (max-width: 640px) {
+  .explore-content {
+    @apply px-4 pt-16;
+  }
+  
+  .explore-title {
+    @apply text-3xl;
+  }
+  
+  .explore-subtitle {
+    @apply text-base;
+  }
+  
+  .explore-tabs-container {
+    @apply overflow-x-auto;
+  }
+  
+  .explore-tab {
+    @apply whitespace-nowrap;
+  }
+}
+
+/* Beautiful animations */
+@keyframes explore-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.explore-post-item,
+.explore-artist-card,
+.explore-tag-card {
+  animation: explore-fade-in 0.6s ease-out;
+}
+
+.explore-post-item:nth-child(1) { animation-delay: 0.1s; }
+.explore-post-item:nth-child(2) { animation-delay: 0.2s; }
+.explore-post-item:nth-child(3) { animation-delay: 0.3s; }
+.explore-post-item:nth-child(4) { animation-delay: 0.4s; }
+.explore-post-item:nth-child(5) { animation-delay: 0.5s; }
+.explore-post-item:nth-child(6) { animation-delay: 0.6s; }
+
+.explore-artist-card:nth-child(1) { animation-delay: 0.1s; }
+.explore-artist-card:nth-child(2) { animation-delay: 0.2s; }
+.explore-artist-card:nth-child(3) { animation-delay: 0.3s; }
+.explore-artist-card:nth-child(4) { animation-delay: 0.4s; }
+.explore-artist-card:nth-child(5) { animation-delay: 0.5s; }
+.explore-artist-card:nth-child(6) { animation-delay: 0.6s; }

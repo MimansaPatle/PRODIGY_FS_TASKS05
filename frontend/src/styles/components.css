@@ -1,0 +1,611 @@
+/* Component Styles */
+
+/* Navbar Component */
+.navbar-container {
+  @apply fixed top-0 left-0 right-0 z-50 glass-surface border-b border-white/20;
+}
+
+.navbar-content {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.navbar-inner {
+  @apply flex items-center justify-between h-16;
+}
+
+.navbar-logo {
+  @apply flex items-center gap-3;
+}
+
+.navbar-logo-icon {
+  @apply w-8 h-8 bg-electric-indigo rounded-lg flex items-center justify-center;
+}
+
+.navbar-logo-text {
+  @apply vois-brand text-electric-indigo;
+}
+
+.navbar-search-container {
+  @apply hidden md:flex flex-1 max-w-md mx-8;
+}
+
+.navbar-search-input-container {
+  @apply relative w-full;
+}
+
+.navbar-search-icon {
+  @apply absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-slate;
+}
+
+.navbar-search-input {
+  @apply vois-input w-full pl-12;
+}
+
+.navbar-actions {
+  @apply flex items-center gap-4;
+}
+
+.navbar-mobile-search-btn {
+  @apply md:hidden p-2 text-muted-slate hover:text-deep-slate transition-colors;
+}
+
+.navbar-notifications-btn {
+  @apply p-2 text-muted-slate hover:text-deep-slate transition-colors relative;
+}
+
+.navbar-notifications-badge {
+  @apply absolute -top-1 -right-1 w-3 h-3 bg-rose-pink rounded-full;
+}
+
+.navbar-profile-container {
+  @apply relative;
+}
+
+.navbar-profile-btn {
+  @apply vois-avatar vois-avatar-live;
+}
+
+.navbar-profile-avatar {
+  @apply w-8 h-8 rounded-full object-cover;
+}
+
+.navbar-profile-avatar-placeholder {
+  @apply w-8 h-8 bg-gradient-to-r from-electric-indigo to-rose-pink rounded-full flex items-center justify-center;
+}
+
+.navbar-profile-avatar-icon {
+  @apply w-4 h-4 text-white;
+}
+
+.navbar-dropdown {
+  @apply absolute right-0 mt-2 w-56 glass-surface rounded-2xl shadow-xl border border-white/20 py-2;
+}
+
+.navbar-dropdown-header {
+  @apply px-4 py-3 border-b border-white/10;
+}
+
+.navbar-dropdown-name {
+  @apply font-black text-deep-slate;
+}
+
+.navbar-dropdown-username {
+  @apply vois-section-label;
+}
+
+.navbar-dropdown-item {
+  @apply flex items-center gap-3 px-4 py-3 text-deep-slate hover:bg-white/50 transition-colors;
+}
+
+.navbar-dropdown-icon {
+  @apply w-4 h-4;
+}
+
+.navbar-dropdown-text {
+  @apply font-medium;
+}
+
+.navbar-dropdown-logout {
+  @apply flex items-center gap-3 px-4 py-3 text-rose-pink hover:bg-white/50 transition-colors w-full text-left;
+}
+
+/* Sidebar Component */
+.sidebar-container {
+  @apply sticky top-20 space-y-6;
+}
+
+.sidebar-profile-card {
+  @apply vois-card p-6;
+}
+
+.sidebar-profile-link {
+  @apply flex items-center gap-4;
+}
+
+.sidebar-profile-avatar {
+  @apply vois-avatar vois-avatar-live;
+}
+
+.sidebar-profile-avatar-img {
+  @apply w-12 h-12 rounded-full object-cover;
+}
+
+.sidebar-profile-avatar-placeholder {
+  @apply w-12 h-12 bg-gradient-to-r from-electric-indigo to-rose-pink rounded-full flex items-center justify-center;
+}
+
+.sidebar-profile-avatar-icon {
+  @apply w-6 h-6 text-white;
+}
+
+.sidebar-profile-info {
+  @apply flex-1 min-w-0;
+}
+
+.sidebar-profile-name {
+  @apply font-black text-deep-slate transition-colors;
+}
+
+.sidebar-profile-username {
+  @apply vois-section-label;
+}
+
+.sidebar-profile-stats {
+  @apply grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-slate-100;
+}
+
+.sidebar-profile-stat {
+  @apply text-center;
+}
+
+.sidebar-profile-stat-number {
+  @apply font-black text-deep-slate;
+}
+
+.sidebar-profile-stat-label {
+  @apply vois-meta text-muted-slate;
+}
+
+.sidebar-nav-card {
+  @apply vois-card p-4;
+}
+
+.sidebar-nav-list {
+  @apply space-y-2;
+}
+
+.sidebar-nav-item {
+  @apply flex items-center gap-4 px-4 py-3 rounded-2xl font-medium transition-all duration-300;
+}
+
+.sidebar-nav-item.active {
+  @apply bg-electric-indigo text-white shadow-lg;
+}
+
+.sidebar-nav-item.inactive {
+  @apply text-deep-slate hover:bg-slate-50 hover:text-electric-indigo;
+}
+
+.sidebar-nav-icon {
+  @apply w-5 h-5;
+}
+
+.sidebar-trending-card {
+  @apply vois-card p-6;
+}
+
+.sidebar-trending-title {
+  @apply vois-section-label mb-4;
+}
+
+.sidebar-trending-list {
+  @apply space-y-4;
+}
+
+.sidebar-trending-item {
+  @apply flex items-center gap-3;
+}
+
+.sidebar-trending-avatar {
+  @apply vois-avatar;
+}
+
+.sidebar-trending-avatar-img {
+  @apply w-8 h-8 rounded-full object-cover;
+}
+
+.sidebar-trending-avatar-placeholder {
+  @apply w-8 h-8 bg-gradient-to-r from-electric-indigo to-rose-pink rounded-full flex items-center justify-center;
+}
+
+.sidebar-trending-avatar-icon {
+  @apply w-4 h-4 text-white;
+}
+
+.sidebar-trending-info {
+  @apply flex-1 min-w-0;
+}
+
+.sidebar-trending-name {
+  @apply font-medium text-deep-slate text-sm hover:text-electric-indigo transition-colors;
+}
+
+.sidebar-trending-username {
+  @apply vois-meta text-muted-slate;
+}
+
+.sidebar-trending-follow-btn {
+  @apply text-xs px-4 py-2 rounded-full font-black transition-colors;
+}
+
+.sidebar-trending-follow-btn.following {
+  @apply bg-slate-100 text-muted-slate hover:bg-red-50 hover:text-red-600;
+}
+
+.sidebar-trending-follow-btn.not-following {
+  @apply vois-btn-secondary;
+}
+
+.sidebar-trending-empty {
+  @apply text-center py-4;
+}
+
+.sidebar-trending-empty-text {
+  @apply vois-meta text-muted-slate;
+}
+
+/* PostCard Component */
+.post-card {
+  @apply vois-card overflow-hidden;
+}
+
+.post-card-media-container {
+  @apply relative aspect-square overflow-hidden;
+}
+
+.post-card-media-video {
+  @apply w-full h-full object-cover;
+}
+
+.post-card-media-image {
+  @apply w-full h-full object-cover transition-transform duration-500;
+}
+
+.post-card-overlay {
+  @apply absolute inset-0 bg-black/0 transition-all duration-300 flex items-center justify-center opacity-0;
+}
+
+.post-card-overlay-actions {
+  @apply flex gap-4;
+}
+
+.post-card-overlay-btn {
+  @apply glass-surface-dark p-3 rounded-full transition-all duration-300;
+}
+
+.post-card-overlay-btn.liked {
+  @apply text-rose-pink;
+}
+
+.post-card-overlay-btn.not-liked {
+  @apply text-white;
+}
+
+.post-card-overlay-btn.comment {
+  @apply text-white;
+}
+
+.post-card-overlay-btn.share {
+  @apply text-white;
+}
+
+.post-card-overlay-icon {
+  @apply w-5 h-5;
+}
+
+.post-card-overlay-icon.liked {
+  @apply fill-current;
+}
+
+.post-card-content {
+  @apply p-6;
+}
+
+.post-card-author-container {
+  @apply flex items-center justify-between mb-4;
+}
+
+.post-card-author-link {
+  @apply flex items-center gap-3;
+}
+
+.post-card-author-avatar {
+  @apply vois-avatar;
+}
+
+.post-card-author-avatar-img {
+  @apply w-8 h-8 rounded-full object-cover;
+}
+
+.post-card-author-avatar-placeholder {
+  @apply w-8 h-8 bg-gradient-to-r from-electric-indigo to-rose-pink rounded-full flex items-center justify-center;
+}
+
+.post-card-author-avatar-icon {
+  @apply w-4 h-4 text-white;
+}
+
+.post-card-author-info {
+  /* Author info styles */
+}
+
+.post-card-author-name {
+  @apply font-black text-deep-slate transition-colors;
+}
+
+.post-card-author-date {
+  @apply vois-meta text-muted-slate;
+}
+
+.post-card-menu-btn {
+  @apply p-2 text-muted-slate hover:text-deep-slate transition-colors;
+}
+
+.post-card-menu-icon {
+  @apply w-4 h-4;
+}
+
+.post-card-text {
+  @apply text-sm font-medium leading-relaxed text-deep-slate mb-4;
+}
+
+.post-card-tags {
+  @apply flex flex-wrap gap-2 mb-4;
+}
+
+.post-card-tag {
+  @apply vois-meta bg-slate-100 text-muted-slate px-3 py-1 rounded-full;
+}
+
+.post-card-actions-container {
+  @apply flex items-center justify-between pt-4 border-t border-slate-100;
+}
+
+.post-card-actions-left {
+  @apply flex items-center gap-6;
+}
+
+.post-card-like-btn {
+  @apply flex items-center gap-2 transition-all duration-300;
+}
+
+.post-card-like-btn.liked {
+  @apply text-rose-pink;
+}
+
+.post-card-like-btn.not-liked {
+  @apply text-muted-slate hover:text-rose-pink;
+}
+
+.post-card-like-icon {
+  @apply w-5 h-5;
+}
+
+.post-card-like-icon.liked {
+  @apply fill-current animate-pulse-like;
+}
+
+.post-card-like-count {
+  @apply vois-meta;
+}
+
+.post-card-comment-link {
+  @apply flex items-center gap-2 text-muted-slate hover:text-electric-indigo transition-colors;
+}
+
+.post-card-comment-icon {
+  @apply w-5 h-5;
+}
+
+.post-card-comment-count {
+  @apply vois-meta;
+}
+
+.post-card-actions-right {
+  @apply flex items-center gap-4;
+}
+
+.post-card-share-btn,
+.post-card-bookmark-btn {
+  @apply text-muted-slate hover:text-electric-indigo transition-colors;
+}
+
+.post-card-share-icon,
+.post-card-bookmark-icon {
+  @apply w-5 h-5;
+}
+
+/* CreatePost Component */
+.create-post-overlay {
+  @apply fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm;
+}
+
+.create-post-container {
+  @apply vois-card-large w-full max-w-2xl max-h-[90vh] overflow-y-auto custom-scrollbar;
+}
+
+.create-post-header {
+  @apply flex items-center justify-between p-6 border-b border-slate-100;
+}
+
+.create-post-title {
+  @apply text-2xl font-black text-deep-slate;
+}
+
+.create-post-close-btn {
+  @apply p-2 text-muted-slate hover:text-deep-slate transition-colors;
+}
+
+.create-post-close-icon {
+  @apply w-6 h-6;
+}
+
+.create-post-form {
+  @apply p-6 space-y-6;
+}
+
+.create-post-error {
+  @apply bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-2xl text-sm;
+}
+
+.create-post-media-section {
+  /* Media section styles */
+}
+
+.create-post-media-label {
+  @apply vois-section-label block mb-3;
+}
+
+.create-post-media-preview {
+  @apply relative;
+}
+
+.create-post-media-video {
+  @apply w-full h-64 object-cover rounded-2xl;
+}
+
+.create-post-media-image {
+  @apply w-full h-64 object-cover rounded-2xl;
+}
+
+.create-post-media-remove-btn {
+  @apply absolute top-4 right-4 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-colors;
+}
+
+.create-post-media-remove-icon {
+  @apply w-4 h-4;
+}
+
+.create-post-media-upload {
+  @apply block;
+}
+
+.create-post-media-upload-input {
+  @apply hidden;
+}
+
+.create-post-media-upload-area {
+  @apply border-2 border-dashed border-slate-200 rounded-2xl p-8 text-center hover:border-electric-indigo transition-colors cursor-pointer;
+}
+
+.create-post-media-upload-icon {
+  @apply w-12 h-12 text-muted-slate mx-auto mb-4;
+}
+
+.create-post-media-upload-title {
+  @apply font-medium text-deep-slate mb-2;
+}
+
+.create-post-media-upload-subtitle {
+  @apply vois-section-label text-muted-slate;
+}
+
+.create-post-media-upload-types {
+  @apply flex items-center justify-center gap-4 mt-4;
+}
+
+.create-post-media-upload-type {
+  @apply flex items-center gap-2 text-muted-slate;
+}
+
+.create-post-media-upload-type-icon {
+  @apply w-4 h-4;
+}
+
+.create-post-media-upload-type-text {
+  @apply text-xs;
+}
+
+.create-post-media-upload-note {
+  @apply text-xs text-muted-slate mt-2 text-center;
+}
+
+.create-post-caption-section {
+  /* Caption section styles */
+}
+
+.create-post-caption-label {
+  @apply vois-section-label block mb-3;
+}
+
+.create-post-caption-textarea {
+  @apply vois-textarea w-full h-32;
+}
+
+.create-post-caption-footer {
+  @apply flex justify-between items-center mt-2;
+}
+
+.create-post-caption-counter {
+  @apply vois-meta text-muted-slate;
+}
+
+.create-post-tags-section {
+  /* Tags section styles */
+}
+
+.create-post-tags-label {
+  @apply vois-section-label block mb-3;
+}
+
+.create-post-tags-input-container {
+  @apply relative;
+}
+
+.create-post-tags-icon {
+  @apply absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-slate;
+}
+
+.create-post-tags-input {
+  @apply vois-input w-full pl-12;
+}
+
+.create-post-tags-help {
+  @apply vois-meta text-muted-slate mt-2;
+}
+
+.create-post-actions {
+  @apply flex gap-4 pt-6 border-t border-slate-100;
+}
+
+.create-post-cancel-btn {
+  @apply vois-btn-secondary flex-1;
+}
+
+.create-post-submit-btn {
+  @apply vois-btn-primary flex-1 disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+/* Beautiful animations for components */
+@keyframes component-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.create-post-container {
+  animation: component-slide-in 0.4s ease-out;
+}
+
+.navbar-dropdown {
+  animation: component-slide-in 0.3s ease-out;
+}
+
+.post-card {
+  animation: component-slide-in 0.6s ease-out;
+}

@@ -1,0 +1,565 @@
+import React, { useState, useMemo } from 'react';
+import { 
+  Home, 
+  Search, 
+  Plus, 
+  Heart, 
+  User, 
+  MessageCircle, 
+  Bookmark, 
+  MoreHorizontal, 
+  Send, 
+  Grid, 
+  Zap, 
+  Hash, 
+  Bell,
+  Settings,
+  X,
+  Image as ImageIcon,
+  Layers,
+  Sparkles,
+  Command,
+  Tag,
+  Mail,
+  Lock,
+  ArrowRight,
+  Eye,
+  EyeOff,
+  Github
+} from 'lucide-react';
+
+// --- Mock Data ---
+const CURRENT_USER_MOCK = {
+  id: 'me',
+  username: 'river.studio',
+  fullName: 'Alex River',
+  bio: 'Visual Storyteller & Creative Director. Minimalist at heart.',
+  avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=150',
+  followers: '2.4k',
+  following: '890',
+  postsCount: 24
+};
+
+const INITIAL_POSTS = [
+  {
+    id: 1,
+    username: 'luna_design',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150',
+    media: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800',
+    caption: 'Exploring abstract forms in 3D space.',
+    likes: 842,
+    size: 'tall',
+    timestamp: '1h',
+    isLiked: false
+  },
+  {
+    id: 2,
+    username: 'nomad_visuals',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150',
+    media: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&q=80&w=800',
+    caption: 'The mountains are calling.',
+    likes: 1105,
+    size: 'wide',
+    timestamp: '4h',
+    isLiked: true
+  },
+  {
+    id: 3,
+    username: 'minimal_arch',
+    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150',
+    media: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800',
+    caption: 'Concrete and light.',
+    likes: 540,
+    size: 'regular',
+    timestamp: '6h',
+    isLiked: false
+  },
+  {
+    id: 4,
+    username: 'flora.found',
+    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150',
+    media: 'https://images.unsplash.com/photo-1501004318641-729e8e06baee?auto=format&fit=crop&q=80&w=800',
+    caption: 'Spring has arrived in the studio.',
+    likes: 920,
+    size: 'tall',
+    timestamp: '8h',
+    isLiked: false
+  }
+];
+
+const COMMUNITY_LIVE = [
+  { id: 1, name: 'Syd', avatar: 'https://i.pravatar.cc/150?u=1', active: true },
+  { id: 2, name: 'Koa', avatar: 'https://i.pravatar.cc/150?u=2', active: true },
+  { id: 3, name: 'Jett', avatar: 'https://i.pravatar.cc/150?u=3', active: false },
+  { id: 4, name: 'Mila', avatar: 'https://i.pravatar.cc/150?u=4', active: true },
+];
+
+// --- Authentication Components ---
+
+const AuthView = ({ onLogin }) => {
+  const [isLogin, setIsLogin] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    // Simulating API call
+    setTimeout(() => {
+      setIsLoading(false);
+      onLogin(CURRENT_USER_MOCK);
+    }, 1500);
+  };
+
+  return (
+    <div className="min-h-screen w-full bg-[#fafbfc] flex items-center justify-center p-6 relative overflow-hidden font-sans">
+      {/* Dynamic Background Elements */}
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-100 rounded-full blur-[120px] opacity-60 animate-pulse" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-pink-100 rounded-full blur-[120px] opacity-60 animate-pulse" />
+
+      <div className="w-full max-w-4xl bg-white/40 backdrop-blur-2xl border border-white/50 rounded-[3rem] shadow-2xl flex flex-col md:flex-row overflow-hidden relative z-10">
+        
+        {/* Left Side: Branding/Visual */}
+        <div className="hidden md:flex md:w-1/2 bg-indigo-600 p-12 flex-col justify-between relative overflow-hidden">
+          <div className="absolute inset-0 opacity-20 pointer-events-none">
+             <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover" alt="" />
+          </div>
+          <div className="relative z-10">
+             <div className="flex items-center gap-3 text-white mb-8">
+                <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center">
+                  <Zap size={22} fill="currentColor" />
+                </div>
+                <span className="font-black text-2xl tracking-tighter uppercase italic">Vois</span>
+             </div>
+             <h1 className="text-5xl font-black text-white leading-tight tracking-tighter">
+               Visuals with <br/> a Voice.
+             </h1>
+          </div>
+          <div className="relative z-10">
+            <p className="text-white/70 text-sm font-medium leading-relaxed max-w-xs">
+              Join the most visually inspired community of curators and visual storytellers.
+            </p>
+          </div>
+        </div>
+
+        {/* Right Side: Form */}
+        <div className="flex-1 p-8 md:p-16 flex flex-col justify-center">
+          <div className="mb-10 text-center md:text-left">
+            <h2 className="text-3xl font-black text-slate-900 tracking-tight mb-2">
+              {isLogin ? 'Welcome Back' : 'Create Studio'}
+            </h2>
+            <p className="text-slate-400 text-sm font-medium">
+              {isLogin ? 'Enter your insights to continue' : 'Start your creative journey today'}
+            </p>
+          </div>
+
+          <form className="space-y-5" onSubmit={handleSubmit}>
+            {!isLogin && (
+              <div className="space-y-2">
+                <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Username</label>
+                <div className="relative">
+                  <User size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" />
+                  <input 
+                    type="text" 
+                    placeholder="e.g. river.studio" 
+                    className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:ring-4 focus:ring-indigo-50 focus:border-indigo-600 transition-all font-bold text-slate-800"
+                    required
+                  />
+                </div>
+              </div>
+            )}
+
+            <div className="space-y-2">
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Email Insight</label>
+              <div className="relative">
+                <Mail size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" />
+                <input 
+                  type="email" 
+                  placeholder="alex@vois.design" 
+                  className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:ring-4 focus:ring-indigo-50 focus:border-indigo-600 transition-all font-bold text-slate-800"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Secure Key</label>
+              <div className="relative">
+                <Lock size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" />
+                <input 
+                  type={showPassword ? "text" : "password"} 
+                  placeholder="••••••••" 
+                  className="w-full pl-12 pr-12 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:ring-4 focus:ring-indigo-50 focus:border-indigo-600 transition-all font-bold text-slate-800"
+                  required
+                />
+                <button 
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-300 hover:text-indigo-600 transition-colors"
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
+            </div>
+
+            <button 
+              disabled={isLoading}
+              className="w-full bg-indigo-600 text-white py-5 rounded-[2rem] font-black text-sm uppercase tracking-widest shadow-xl shadow-indigo-600/20 hover:bg-indigo-700 hover:-translate-y-1 active:translate-y-0 transition-all flex items-center justify-center gap-3 disabled:opacity-50"
+            >
+              {isLoading ? 'Processing...' : (
+                <>
+                  {isLogin ? 'Enter Vois' : 'Join Community'}
+                  <ArrowRight size={18} />
+                </>
+              )}
+            </button>
+          </form>
+
+          <div className="mt-8 flex items-center gap-4 text-slate-300">
+            <div className="flex-1 h-px bg-slate-100" />
+            <span className="text-[10px] font-black uppercase tracking-widest">Or continue with</span>
+            <div className="flex-1 h-px bg-slate-100" />
+          </div>
+
+          <div className="mt-8 grid grid-cols-2 gap-4">
+            <button className="flex items-center justify-center gap-3 py-4 border border-slate-100 rounded-2xl font-bold text-sm text-slate-600 hover:bg-slate-50 transition-all">
+              <Github size={18} /> GitHub
+            </button>
+            <button className="flex items-center justify-center gap-3 py-4 border border-slate-100 rounded-2xl font-bold text-sm text-slate-600 hover:bg-slate-50 transition-all">
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-2.12 5.36-7.84 5.36-4.96 0-9-4.08-9-9s4.04-9 9-9c2.8 0 4.68 1.16 5.76 2.2l2.6-2.6C18.84 1.12 15.92 0 12.48 0 5.56 0 0 5.56 0 12.48s5.56 12.48 12.48 12.48c7.2 0 12-5.08 12-12.2 0-.84-.08-1.48-.2-2.12h-11.8z"/></svg> Google
+            </button>
+          </div>
+
+          <p className="mt-10 text-center text-sm font-medium text-slate-400">
+            {isLogin ? "Don't have a studio yet?" : "Already a curator?"}{' '}
+            <button 
+              onClick={() => setIsLogin(!isLogin)}
+              className="text-indigo-600 font-black hover:underline underline-offset-4"
+            >
+              {isLogin ? 'Create One' : 'Log In'}
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// --- Unique Components ---
+
+const GlassDock = ({ activeTab, setTab }) => {
+  const items = [
+    { id: 'home', icon: Home },
+    { id: 'explore', icon: Search },
+    { id: 'create', icon: Plus, highlight: true },
+    { id: 'notifications', icon: Bell },
+    { id: 'profile', icon: User },
+  ];
+
+  return (
+    <nav className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] flex items-center gap-2 p-2 bg-white/70 backdrop-blur-xl border border-white/20 shadow-2xl rounded-[2.5rem]">
+      {items.map(item => (
+        <button
+          key={item.id}
+          onClick={() => setTab(item.id)}
+          className={`relative group flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 ${
+            item.highlight 
+              ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30' 
+              : activeTab === item.id ? 'text-indigo-600 bg-indigo-50' : 'text-slate-400 hover:text-slate-900'
+          }`}
+        >
+          <item.icon size={22} strokeWidth={2.5} />
+          {activeTab === item.id && !item.highlight && (
+            <span className="absolute -top-1 right-1 w-2 h-2 bg-pink-500 rounded-full border-2 border-white" />
+          )}
+        </button>
+      ))}
+    </nav>
+  );
+};
+
+const CreativeCard = ({ post, onLike }) => {
+  const sizeClasses = {
+    tall: 'row-span-2 col-span-1',
+    wide: 'col-span-2 row-span-1',
+    regular: 'col-span-1 row-span-1'
+  };
+
+  return (
+    <div className={`${sizeClasses[post.size] || 'col-span-1 row-span-1'} group relative rounded-[2rem] overflow-hidden bg-slate-200 cursor-pointer shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500`}>
+      <img src={post.media} alt="" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+      
+      {/* Overlay Information */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-end">
+        <div className="flex items-center gap-3 mb-3">
+          <img src={post.avatar} className="w-8 h-8 rounded-full border border-white/40" alt="" />
+          <span className="text-white font-bold text-sm tracking-tight">{post.username}</span>
+        </div>
+        <p className="text-white/80 text-xs line-clamp-2 mb-4 leading-relaxed">{post.caption}</p>
+        
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4 text-white">
+            <button onClick={(e) => { e.stopPropagation(); onLike(post.id); }} className={`${post.isLiked ? 'text-pink-500' : 'text-white'}`}>
+              <Heart size={20} fill={post.isLiked ? "currentColor" : "none"} />
+            </button>
+            <MessageCircle size={20} />
+            <Send size={20} />
+          </div>
+          <Bookmark size={20} className="text-white" />
+        </div>
+      </div>
+
+      {/* Subtle floating stats always visible */}
+      <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-md border border-white/20 px-3 py-1 rounded-full opacity-100 group-hover:opacity-0 transition-opacity">
+        <span className="text-white text-[10px] font-black tracking-widest uppercase">{post.likes}</span>
+      </div>
+    </div>
+  );
+};
+
+const CommunityPanel = ({ onLogout }) => (
+  <aside className="hidden xl:flex flex-col w-72 h-screen sticky top-0 p-8 pt-12 space-y-10 border-l border-slate-100">
+    <div className="space-y-6">
+      <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">In the Studio Now</h3>
+      <div className="space-y-4">
+        {COMMUNITY_LIVE.map(user => (
+          <div key={user.id} className="flex items-center gap-4 group cursor-pointer">
+            <div className="relative">
+              <img src={user.avatar} className="w-10 h-10 rounded-full object-cover grayscale group-hover:grayscale-0 transition-all" alt="" />
+              {user.active && <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 rounded-full border-2 border-white" />}
+            </div>
+            <div>
+              <p className="text-sm font-bold text-slate-800">{user.name}</p>
+              <p className="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">
+                {user.active ? 'Available' : 'Offline'}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div className="bg-indigo-50 p-6 rounded-[2rem] space-y-4">
+      <div className="bg-indigo-600 w-10 h-10 rounded-2xl flex items-center justify-center text-white">
+        <Sparkles size={20} />
+      </div>
+      <h4 className="font-black text-slate-800 leading-tight">Join the Pro Curator Circle</h4>
+      <p className="text-xs text-indigo-900/60 leading-relaxed font-medium">Get featured in the global spotlight grid.</p>
+      <button className="w-full py-3 bg-white text-indigo-600 rounded-xl font-black text-[10px] uppercase tracking-widest shadow-sm">Upgrade Now</button>
+    </div>
+
+    <button 
+      onClick={onLogout}
+      className="mt-auto flex items-center gap-3 text-slate-400 hover:text-red-500 transition-colors font-black text-[10px] uppercase tracking-widest"
+    >
+      <X size={18} /> Sign Out
+    </button>
+  </aside>
+);
+
+// --- Page Views ---
+
+const DiscoveryGrid = ({ posts, onLike }) => (
+  <div className="flex-1 p-6 md:p-12 pb-32">
+    <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <div className="space-y-2">
+        <h1 className="text-5xl font-black tracking-tighter text-slate-900">Discover</h1>
+        <p className="text-slate-400 font-medium">Curation for the visually inspired.</p>
+      </div>
+      <div className="flex gap-2">
+        <button className="px-6 py-2.5 bg-slate-100 rounded-full text-xs font-bold text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 transition-all">Trending</button>
+        <button className="px-6 py-2.5 bg-indigo-600 rounded-full text-xs font-bold text-white shadow-lg shadow-indigo-600/20 transition-all">Newest</button>
+      </div>
+    </header>
+
+    <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 auto-rows-[200px] md:auto-rows-[300px]">
+      {posts.map(post => (
+        <CreativeCard key={post.id} post={post} onLike={onLike} />
+      ))}
+      
+      {/* Mocking extra grid filler */}
+      <div className="col-span-1 row-span-1 rounded-[2rem] bg-indigo-50 flex flex-col items-center justify-center p-6 text-center group cursor-pointer hover:bg-indigo-100 transition-colors">
+        <Layers className="text-indigo-600 mb-4 group-hover:scale-110 transition-transform" size={32} />
+        <h5 className="font-black text-slate-800 text-sm">Create Board</h5>
+        <p className="text-[10px] text-indigo-900/40 uppercase tracking-widest mt-2">New Collection</p>
+      </div>
+    </div>
+  </div>
+);
+
+const CreateOverlay = ({ onClose, onPost }) => {
+  const [mediaUrl, setMediaUrl] = useState('');
+  const [caption, setCaption] = useState('');
+
+  return (
+    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
+      <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-md" onClick={onClose} />
+      <div className="relative bg-white w-full max-w-4xl h-[80vh] rounded-[3rem] shadow-2xl overflow-hidden flex flex-col md:flex-row">
+        <button onClick={onClose} className="absolute top-6 right-6 z-10 p-2 bg-slate-100 rounded-full hover:bg-slate-200 transition-colors"><X size={20} /></button>
+        
+        <div className="w-full md:w-3/5 bg-slate-50 flex items-center justify-center border-b md:border-b-0 md:border-r border-slate-100 p-8">
+          {mediaUrl ? (
+            <img src={mediaUrl} className="w-full h-full object-contain rounded-2xl" alt="" />
+          ) : (
+            <div className="text-center space-y-4">
+              <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center mx-auto shadow-sm"><ImageIcon size={32} className="text-slate-300" /></div>
+              <p className="text-sm font-bold text-slate-400">Drop artwork here</p>
+              <input 
+                type="text" 
+                placeholder="Paste Image URL" 
+                className="px-6 py-3 bg-white border border-slate-200 rounded-full text-xs outline-none focus:border-indigo-600 w-64"
+                onChange={(e) => setMediaUrl(e.target.value)}
+              />
+            </div>
+          )}
+        </div>
+
+        <div className="flex-1 p-10 flex flex-col">
+          <h2 className="text-2xl font-black text-slate-900 mb-8">Share Insight</h2>
+          <textarea 
+            placeholder="What's the story behind this piece?" 
+            className="flex-1 w-full bg-transparent outline-none resize-none font-medium text-slate-600"
+            value={caption}
+            onChange={(e) => setCaption(e.target.value)}
+          />
+          <div className="pt-8 border-t border-slate-100 flex items-center justify-between">
+             <div className="flex gap-2">
+               <button className="p-2 bg-slate-50 rounded-lg text-slate-400"><Hash size={18} /></button>
+               <button className="p-2 bg-slate-50 rounded-lg text-slate-400"><Tag size={18} /></button>
+             </div>
+             <button 
+               onClick={() => onPost({ mediaUrl, caption })}
+               className="px-8 py-3 bg-indigo-600 text-white rounded-full font-black text-xs uppercase tracking-widest shadow-xl shadow-indigo-600/30"
+              >
+               Publish Post
+             </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// --- Main App ---
+
+export default function App() {
+  const [user, setUser] = useState(null);
+  const [activeTab, setActiveTab] = useState('home');
+  const [posts, setPosts] = useState(INITIAL_POSTS);
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+
+  // Authentication Guard
+  if (!user) {
+    return <AuthView onLogin={setUser} />;
+  }
+
+  const handleLike = (id) => {
+    setPosts(prev => prev.map(p => p.id === id ? { ...p, isLiked: !p.isLiked, likes: p.isLiked ? p.likes - 1 : p.likes + 1 } : p));
+  };
+
+  const handleTabChange = (id) => {
+    if (id === 'create') setIsCreateOpen(true);
+    else setActiveTab(id);
+  };
+
+  const handlePost = (data) => {
+    const newPost = {
+      id: Date.now(),
+      username: user.username,
+      avatar: user.avatar,
+      media: data.mediaUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe',
+      caption: data.caption,
+      likes: 0,
+      size: 'regular',
+      timestamp: 'Just now',
+      isLiked: false
+    };
+    setPosts([newPost, ...posts]);
+    setIsCreateOpen(false);
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    setActiveTab('home');
+  };
+
+  return (
+    <div className="min-h-screen bg-[#fafbfc] flex font-sans text-slate-900 selection:bg-indigo-100 selection:text-indigo-600 animate-in fade-in duration-700">
+      
+      {/* Floating Logo Top Left */}
+      <div className="fixed top-8 left-8 z-[110] flex items-center gap-3">
+        <div className="w-10 h-10 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-indigo-600/20">
+          <Zap size={22} fill="currentColor" />
+        </div>
+        <span className="font-black text-xl tracking-tighter uppercase italic text-indigo-600">Vois</span>
+      </div>
+
+      {/* Main Layout */}
+      <div className="flex w-full">
+        {activeTab === 'home' && <DiscoveryGrid posts={posts} onLike={handleLike} />}
+        
+        {activeTab === 'explore' && (
+          <div className="flex-1 p-12 text-center flex flex-col items-center justify-center gap-6">
+            <div className="w-24 h-24 bg-indigo-50 rounded-[2.5rem] flex items-center justify-center text-indigo-600 mb-4"><Search size={40} /></div>
+            <h2 className="text-3xl font-black tracking-tight">Search Canvas</h2>
+            <div className="max-w-md w-full relative">
+              <input type="text" placeholder="Artists, aesthetics, or trends..." className="w-full px-8 py-5 bg-white border border-slate-100 rounded-[2rem] shadow-sm outline-none focus:ring-4 focus:ring-indigo-50 transition-all font-bold" />
+              <Command size={20} className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-300" />
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'profile' && (
+          <div className="flex-1 max-w-5xl mx-auto p-12 pb-32">
+             <header className="flex flex-col md:flex-row items-center gap-12 mb-20">
+               <div className="relative p-2 rounded-[3rem] bg-gradient-to-tr from-indigo-600 to-pink-500">
+                 <img src={user.avatar} className="w-32 h-32 md:w-48 md:h-48 rounded-[2.5rem] object-cover border-4 border-white shadow-2xl" alt="" />
+               </div>
+               <div className="flex-1 space-y-6 text-center md:text-left">
+                  <div className="flex flex-col md:flex-row items-center gap-4">
+                    <h2 className="text-3xl font-black tracking-tight">{user.username}</h2>
+                    <button className="px-8 py-3 bg-slate-100 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-slate-200 transition-colors">Edit Studio</button>
+                    <button className="p-3 bg-slate-100 rounded-full"><Settings size={18} /></button>
+                  </div>
+                  <div className="flex justify-center md:justify-start gap-10">
+                    <div><span className="font-black block text-xl">{user.postsCount}</span><span className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Creations</span></div>
+                    <div><span className="font-black block text-xl">{user.followers}</span><span className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Collectors</span></div>
+                    <div><span className="font-black block text-xl">{user.following}</span><span className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Inspired By</span></div>
+                  </div>
+                  <p className="max-w-md text-slate-500 font-medium leading-relaxed">{user.bio}</p>
+               </div>
+             </header>
+
+             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {posts.filter(p => p.username === user.username).map(p => (
+                   <div key={p.id} className="aspect-square rounded-[2rem] overflow-hidden bg-slate-100 group cursor-pointer relative">
+                      <img src={p.media} className="w-full h-full object-cover transition-transform group-hover:scale-110" alt="" />
+                      <div className="absolute inset-0 bg-indigo-600/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+                        <Heart size={24} fill="white" />
+                      </div>
+                   </div>
+                ))}
+             </div>
+          </div>
+        )}
+
+        <CommunityPanel onLogout={handleLogout} />
+      </div>
+
+      {/* Overlays */}
+      <GlassDock activeTab={activeTab} setTab={handleTabChange} />
+      {isCreateOpen && <CreateOverlay onClose={() => setIsCreateOpen(false)} onPost={handlePost} />}
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        body { overflow-x: hidden; }
+        @keyframes fade-in {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-in { animation: fade-in 0.8s ease-out forwards; }
+      `}} />
+    </div>
+  );
+}

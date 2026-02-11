@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    @apply bg-vois-snow text-deep-slate font-sans antialiased;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Vois Glass Surface */
+  .glass-surface {
+    @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-lg;
+  }
+  
+  .glass-surface-dark {
+    @apply bg-slate-900/40 backdrop-blur-md border border-white/10 shadow-xl;
+  }
+  
+  /* Vois Input Styles */
+  .vois-input {
+    @apply bg-white border border-slate-200 rounded-full px-6 py-3 text-sm font-medium placeholder:text-muted-slate focus:ring-4 focus:ring-electric-indigo/20 focus:border-electric-indigo transition-all duration-300 shadow-sm;
+  }
+  
+  .vois-textarea {
+    @apply bg-white border border-slate-200 rounded-2xl px-6 py-4 text-sm font-medium placeholder:text-muted-slate focus:ring-4 focus:ring-electric-indigo/20 focus:border-electric-indigo transition-all duration-300 resize-none shadow-sm;
+  }
+  
+  /* Vois Button Styles */
+  .vois-btn-primary {
+    @apply bg-electric-indigo text-white font-black text-xs uppercase tracking-[0.3em] px-8 py-4 rounded-full hover:bg-indigo-600 transition-all duration-300 transform hover:scale-105 hover:shadow-xl shadow-lg;
+  }
+  
+  .vois-btn-secondary {
+    @apply glass-surface text-deep-slate font-black text-xs uppercase tracking-[0.3em] px-8 py-4 rounded-full hover:bg-white/90 transition-all duration-300 transform hover:scale-105 hover:shadow-xl;
+  }
+  
+  /* Vois Card Styles */
+  .vois-card {
+    @apply bg-white rounded-[2rem] shadow-lg border border-white/20 transition-all duration-500 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:-translate-y-1;
+  }
+  
+  .vois-card-large {
+    @apply bg-white rounded-[2rem] shadow-xl border border-white/20 transition-all duration-500 ease-in-out hover:scale-[1.01] hover:shadow-2xl;
+  }
+  
+  /* Avatar with Live Indicator */
+  .vois-avatar {
+    @apply relative rounded-full p-1 bg-gradient-to-r from-electric-indigo to-rose-pink shadow-lg;
+  }
+  
+  .vois-avatar.offline img {
+    @apply grayscale;
+  }
+  
+  .vois-avatar-live::after {
+    content: '';
+    @apply absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 rounded-full border-2 border-white shadow-sm;
+  }
+  
+  /* Typography Hierarchy */
+  .vois-display {
+    @apply text-5xl font-black tracking-tighter text-deep-slate;
+  }
+  
+  .vois-brand {
+    @apply text-xl font-black italic tracking-tighter uppercase;
+  }
+  
+  .vois-section-label {
+    @apply text-xs font-black uppercase tracking-[0.3em] text-muted-slate;
+  }
+  
+  .vois-meta {
+    @apply text-xs font-black tracking-[0.2em] uppercase;
+  }
+  
+  /* Floating Glass Dock */
+  .vois-dock {
+    @apply fixed bottom-8 left-1/2 transform -translate-x-1/2 h-16 glass-surface rounded-full shadow-2xl px-6 flex items-center gap-6 z-50;
+  }
+  
+  /* Skeleton Loading */
+  .vois-skeleton {
+    @apply animate-pulse bg-slate-200 rounded-[2rem];
+  }
+  
+  /* Beautiful Animations */
+  @keyframes pulse-like {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+  
+  .animate-pulse-like {
+    animation: pulse-like 0.6s ease-in-out;
+  }
+  
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-electric-indigo to-rose-pink bg-clip-text text-transparent;
+  }
+  
+  /* Masonry Grid Helpers */
+  .masonry-item-tall {
+    grid-row-end: span 2;
+  }
+  
+  .masonry-item-wide {
+    grid-column-end: span 2;
+  }
+  
+  /* Beautiful Scrollbars */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-slate-100 rounded-full;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-electric-indigo rounded-full;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-indigo-600;
+  }
+}
