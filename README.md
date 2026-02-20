@@ -1,324 +1,220 @@
-# Vois - Visual Social Platform
+# 🌹 Pixora - Visual Social Media Platform
 
-A modern, full-stack social media application built with React and FastAPI, featuring real-time interactions, stories, messaging, and comprehensive social networking capabilities.
+A modern, feature-rich social media platform with a stunning rose-themed dark design. Built for visual storytellers and content creators.
 
-## 🚀 Features
+## ✨ Features
 
-### Core Features
-- **User Authentication & Authorization** - JWT-based secure authentication with email verification
-- **Posts & Media Sharing** - Create, edit, delete posts with multiple images/videos
-- **Stories** - 24-hour ephemeral content with view tracking
-- **Comments & Nested Replies** - Multi-level comment threads
-- **Real-time Messaging** - Direct messaging between users
-- **Notifications** - Real-time updates for likes, comments, follows, and mentions
-- **User Profiles** - Customizable profiles with bio, avatar, and cover images
-- **Follow System** - Follow/unfollow users with follower/following lists
-- **Hashtags** - Trending hashtags and hashtag-based content discovery
-- **Search & Explore** - Discover users and content
-- **Analytics** - User engagement metrics and insights
-- **Moderation** - Content reporting and user blocking
+### Core Functionality
+- 🔐 **Authentication** - Secure login/register with JWT tokens and password reset
+- 📝 **Posts** - Create, edit, delete posts with images/videos
+- 💬 **Comments** - Nested comments with edit/delete functionality
+- ❤️ **Interactions** - Like, bookmark, and share posts
+- 👥 **Social** - Follow/unfollow users, private accounts
+- 📖 **Stories** - 24-hour ephemeral content with story replies
+- 💌 **Messages** - Direct messaging with post/story sharing
+- 🔔 **Notifications** - Real-time updates for interactions
+- #️⃣ **Hashtags** - Discover content by tags
+- 🔍 **Explore** - Trending posts and user discovery
+- 🚫 **Moderation** - Block users and report content
 
-### Advanced Features
-- Infinite scroll feed with optimized loading
-- Image carousel for multi-media posts
-- Lazy loading for images
-- Responsive design with Tailwind CSS
-- Password reset via email
-- User verification badges
-- Post sharing functionality
-- Mention autocomplete (@username)
-- Feed filtering (Following/For You)
+### Design
+- 🎨 Rose-themed dark UI with gradient accents
+- 📱 Fully responsive design
+- ⚡ Smooth animations and transitions
+- 🌙 Dark mode optimized
+- ✨ Glassmorphism effects
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **React 18** - UI library
-- **Vite** - Build tool and dev server
-- **React Router v6** - Client-side routing
+- **React** - UI library
+- **Vite** - Build tool
+- **React Router** - Navigation
+- **Tailwind CSS** - Styling
+- **Lucide Icons** - Icon library
 - **Axios** - HTTP client
-- **Tailwind CSS** - Utility-first CSS framework
-- **Lucide React** - Icon library
-- **React Hook Form** - Form management
 
 ### Backend
-- **FastAPI** - Modern Python web framework
+- **FastAPI** - Python web framework
 - **MongoDB** - NoSQL database
-- **Motor** - Async MongoDB driver
-- **PyJWT** - JWT token handling
-- **Passlib** - Password hashing
-- **Python-Jose** - JWT encryption
-- **Uvicorn** - ASGI server
+- **JWT** - Authentication
+- **Bcrypt** - Password hashing
+- **SMTP** - Email service
 
-## 📋 Prerequisites
+## 🚀 Quick Start
 
-- **Node.js** (v16 or higher)
-- **Python** (v3.8 or higher)
-- **MongoDB** (v4.4 or higher)
-- **Git**
+### Prerequisites
+- Node.js (v16+)
+- Python (v3.8+)
+- MongoDB (v4.4+)
 
-## 🔧 Installation & Setup
+### Installation
 
-### 1. Clone the Repository
-```bash
-git clone <your-repository-url>
-cd vois-social-platform
-```
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd pixora-social-media
+   ```
 
-### 2. Backend Setup
+2. **Backend Setup**
+   ```bash
+   cd backend
+   python -m venv venv
+   
+   # Windows
+   venv\Scripts\activate
+   
+   # Mac/Linux
+   source venv/bin/activate
+   
+   pip install -r requirements.txt
+   ```
 
-#### Install Python Dependencies
-```bash
-cd backend
-python -m venv venv
+3. **Configure Backend Environment**
+   
+   Copy the example file and update with your credentials:
+   ```bash
+   cp backend/.env.example backend/.env
+   ```
+   
+   Edit `backend/.env` and update:
+   ```env
+   # MongoDB
+   MONGODB_URL=mongodb://localhost:27017
+   DATABASE_NAME=pixora_social_app
+   
+   # JWT - Generate a secure secret key
+   SECRET_KEY=your-secure-secret-key-here
+   ALGORITHM=HS256
+   ACCESS_TOKEN_EXPIRE_MINUTES=30
+   
+   # SMTP (Optional - for password reset emails)
+   SMTP_HOST=smtp.gmail.com
+   SMTP_PORT=587
+   SMTP_USERNAME=your-email@gmail.com
+   SMTP_PASSWORD=your-app-password
+   SMTP_FROM_EMAIL=your-email@gmail.com
+   SMTP_FROM_NAME=Pixora
+   ```
 
-# On Windows
-venv\Scripts\activate
+4. **Frontend Setup**
+   ```bash
+   cd frontend
+   npm install
+   ```
 
-# On macOS/Linux
-source venv/bin/activate
+5. **Configure Frontend Environment**
+   
+   Copy the example file:
+   ```bash
+   cp frontend/.env.example frontend/.env
+   ```
+   
+   The default configuration should work:
+   ```env
+   VITE_API_URL=http://localhost:8000
+   ```
 
-pip install -r requirements.txt
-```
+### Running the Application
 
-#### Configure Environment Variables
-Copy the example file and edit with your values:
-```bash
-copy .env.example .env  # Windows
-cp .env.example .env    # macOS/Linux
-```
+1. **Start MongoDB**
+   ```bash
+   mongod
+   ```
 
-Edit `backend/.env` with your configuration:
-```env
-# FastAPI
-BACKEND_URL=http://localhost:8000
-FRONTEND_URL=http://localhost:5173
+2. **Start Backend** (in backend directory)
+   ```bash
+   # Windows
+   venv\Scripts\python main.py
+   
+   # Mac/Linux
+   python main.py
+   ```
+   Backend runs on: http://localhost:8000
 
-# MongoDB
-MONGODB_URL=mongodb://localhost:27017
-DATABASE_NAME=vois_social_app
-
-# JWT Security - CHANGE THIS!
-SECRET_KEY=your-super-secret-jwt-key-change-this-in-production
-ALGORITHM=HS256
-ACCESS_TOKEN_EXPIRE_MINUTES=30
-
-# SMTP Email Configuration (for password reset)
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USERNAME=your-email@gmail.com
-SMTP_PASSWORD=your-app-password
-SMTP_FROM_EMAIL=your-email@gmail.com
-SMTP_FROM_NAME=Vois - Visual Social Platform
-```
-
-**Gmail Setup:** Enable 2FA and create an App Password at https://myaccount.google.com/apppasswords
-
-#### Firebase Setup (Optional)
-1. Create a Firebase project at [Firebase Console](https://console.firebase.google.com/)
-2. Download the service account key JSON file
-3. Save it as `firebase-admin-key.json` in the `backend` directory
-4. **Note:** This file is automatically ignored by git
-
-### 3. Frontend Setup
-
-#### Install Node Dependencies
-```bash
-cd frontend
-npm install
-```
-
-#### Configure Environment Variables
-Copy the example file and edit:
-```bash
-copy .env.example .env  # Windows
-cp .env.example .env    # macOS/Linux
-```
-
-Edit `frontend/.env`:
-```env
-VITE_API_URL=http://localhost:8000
-```
-
-### 4. Database Setup
-
-Start MongoDB:
-```bash
-# Windows
-net start MongoDB
-
-# macOS
-brew services start mongodb-community
-
-# Linux
-sudo systemctl start mongod
-```
-
-## 🚀 Running the Application
-
-### Start Backend Server
-```bash
-cd backend
-venv\Scripts\activate  # Windows
-source venv/bin/activate  # macOS/Linux
-python start_server.py
-```
-Backend runs on `http://localhost:8000`
-- API Docs: `http://localhost:8000/docs`
-
-### Start Frontend Development Server
-```bash
-cd frontend
-npm run dev
-```
-Frontend runs on `http://localhost:5173`
+3. **Start Frontend** (in frontend directory)
+   ```bash
+   npm run dev
+   ```
+   Frontend runs on: http://localhost:5173
 
 ## 📁 Project Structure
 
 ```
-vois-social-platform/
+pixora-social-media/
 ├── backend/
 │   ├── app/
 │   │   ├── analytics/      # Analytics endpoints
-│   │   ├── auth/           # Authentication & authorization
-│   │   ├── comments/       # Comment management
-│   │   ├── hashtags/       # Hashtag functionality
+│   │   ├── auth/           # Authentication
+│   │   ├── comments/       # Comments management
+│   │   ├── hashtags/       # Hashtag features
 │   │   ├── messages/       # Direct messaging
-│   │   ├── moderation/     # Content moderation
+│   │   ├── moderation/     # Block/report features
 │   │   ├── notifications/  # Notification system
-│   │   ├── posts/          # Post CRUD operations
-│   │   ├── services/       # Email and other services
+│   │   ├── posts/          # Post management
 │   │   ├── stories/        # Stories feature
 │   │   ├── users/          # User management
-│   │   ├── database.py     # Database connection
-│   │   ├── models.py       # Pydantic models
-│   │   └── utils.py        # Utility functions
-│   ├── main.py             # FastAPI application entry
-│   ├── requirements.txt    # Python dependencies
-│   ├── .env.example        # Example environment variables
-│   └── .env               # Your config (not in git)
+│   │   ├── database.py     # MongoDB connection
+│   │   └── models.py       # Data models
+│   ├── main.py             # FastAPI app
+│   └── requirements.txt
 │
 ├── frontend/
 │   ├── src/
 │   │   ├── components/     # React components
 │   │   ├── pages/          # Page components
-│   │   ├── services/       # API service layer
-│   │   ├── context/        # React context (Auth)
-│   │   ├── hooks/          # Custom React hooks
-│   │   ├── config/         # Configuration files
+│   │   ├── services/       # API services
+│   │   ├── context/        # React context
+│   │   ├── hooks/          # Custom hooks
 │   │   └── styles/         # CSS files
-│   ├── package.json        # Node dependencies
-│   ├── .env.example        # Example environment variables
-│   └── .env               # Your config (not in git)
+│   ├── index.html
+│   └── package.json
 │
-├── .gitignore             # Git ignore rules
-├── LICENSE                # MIT License
-└── README.md              # This file
+└── README.md
 ```
 
-## 📝 API Endpoints
+## 🎨 Design System
 
-### Authentication
-- `POST /auth/register` - Register new user
-- `POST /auth/login` - User login
-- `POST /auth/forgot-password` - Request password reset
-- `POST /auth/reset-password` - Reset password with token
+### Colors
+- **Background**: `#0a0708`, `#130f10`
+- **Rose Gradient**: `#e93e68` → `#f45d7d`
+- **Text**: White with opacity variants (100%, 70%, 40%, 20%)
+- **Borders**: White with 5-10% opacity
 
-### Users
-- `GET /users/me` - Get current user profile
-- `PUT /users/me` - Update user profile
-- `GET /users/{user_id}` - Get user by ID
-- `POST /users/{user_id}/follow` - Follow user
-- `DELETE /users/{user_id}/follow` - Unfollow user
+### Components
+- Rose gradient buttons with glow effects
+- Dark glassmorphism cards
+- Smooth hover animations
+- Rounded corners (2rem-3rem)
 
-### Posts
-- `GET /posts/feed` - Get user feed
-- `POST /posts` - Create new post
-- `GET /posts/{post_id}` - Get post details
-- `PUT /posts/{post_id}` - Update post
-- `DELETE /posts/{post_id}` - Delete post
-- `POST /posts/{post_id}/like` - Like post
+## 🔑 Getting Started
 
-### Comments
-- `POST /posts/{post_id}/comments` - Add comment
-- `GET /posts/{post_id}/comments` - Get post comments
-- `PUT /comments/{comment_id}` - Update comment
-- `DELETE /comments/{comment_id}` - Delete comment
+After setting up the project, create your first account through the registration page. All features including authentication, posts, comments, stories, and messaging will be available immediately.
 
-### Stories
-- `POST /stories` - Create story
-- `GET /stories` - Get stories feed
-- `POST /stories/{story_id}/view` - Mark story as viewed
+## 📝 API Documentation
 
-### Messages
-- `GET /messages/conversations` - Get conversations
-- `POST /messages` - Send message
-- `GET /messages/{user_id}` - Get conversation with user
-
-### Notifications
-- `GET /notifications` - Get user notifications
-- `PUT /notifications/{notification_id}/read` - Mark as read
-
-## 🔐 Security & Best Practices
-
-### Before Pushing to GitHub
-1. ✅ Verify `.env` files are NOT committed (they're in `.gitignore`)
-2. ✅ Verify `firebase-admin-key.json` is NOT committed
-3. ✅ Check `git status` before pushing
-4. ✅ Use `.env.example` files to show required configuration
-
-### Production Checklist
-- Change `SECRET_KEY` to a strong random value
-- Use production database (MongoDB Atlas)
-- Enable HTTPS
-- Set up proper CORS policies
-- Implement rate limiting
-- Use environment-specific configurations
-- Enable database backups
-- Set up monitoring and logging
-
-## 🐛 Common Issues
-
-### MongoDB Connection Error
-- Ensure MongoDB is running: `net start MongoDB` (Windows)
-- Check `MONGODB_URL` in `backend/.env`
-
-### CORS Error
-- Verify `FRONTEND_URL` in `backend/.env` matches your frontend URL
-- Check `VITE_API_URL` in `frontend/.env`
-
-### Email Not Sending
-- Use Gmail App Password (not regular password)
-- Enable 2FA on Gmail account
-- Generate App Password: https://myaccount.google.com/apppasswords
-
-### Port Already in Use
-```bash
-# Windows - Kill process on port
-netstat -ano | findstr :8000
-taskkill /PID <PID> /F
-```
+Once the backend is running, visit:
+- **Swagger UI**: http://localhost:8000/docs
+- **ReDoc**: http://localhost:8000/redoc
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
-
-### Commit Message Guidelines
-- Use present tense ("Add feature" not "Added feature")
-- Keep first line under 50 characters
-- Reference issues when relevant
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
-## 📞 Support
+## 🙏 Acknowledgments
 
-For support, open an issue in the repository or contact the maintainers.
+- Rose theme design inspiration
+- Lucide Icons for beautiful icons
+- FastAPI and React communities
 
 ---
 
-**Made with ❤️ using React and FastAPI**
+**Built with ❤️ and 🌹 by the Pixora team**

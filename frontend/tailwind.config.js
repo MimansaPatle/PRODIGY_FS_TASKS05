@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Vois Color Palette
+        // Pixora Color Palette
         'vois-snow': '#fefefe',
         'deep-slate': '#1e293b',
         'muted-slate': '#64748b',

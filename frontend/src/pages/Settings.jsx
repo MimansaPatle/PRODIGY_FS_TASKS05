@@ -4,6 +4,8 @@ import { ArrowLeft, Lock, Shield, Ban, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import api from '../config/api';
 
+const ROSE_GRADIENT = "bg-gradient-to-r from-[#e93e68] to-[#f45d7d]";
+
 export default function Settings() {
   const navigate = useNavigate();
   const { userProfile, updateUserProfile } = useAuth();
@@ -53,16 +55,16 @@ export default function Settings() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#0a0708] selection:bg-[#e93e68] selection:text-white">
       {/* Header */}
-      <div className="sticky top-0 z-10 bg-white/80 backdrop-blur-xl border-b border-slate-100 px-6 py-4">
+      <div className="sticky top-0 z-10 bg-[#130f10]/80 backdrop-blur-xl border-b border-white/10 px-6 py-4">
         <div className="flex items-center gap-4">
-          <button onClick={() => navigate(-1)} className="p-2 hover:bg-slate-100 rounded-full">
-            <ArrowLeft size={20} />
+          <button onClick={() => navigate(-1)} className="p-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
+            <ArrowLeft size={20} className="text-white" />
           </button>
           <div>
-            <h1 className="text-2xl font-black">Settings</h1>
-            <p className="text-sm text-slate-400">Privacy & Security</p>
+            <h1 className="text-2xl font-black text-white uppercase tracking-tighter italic">Settings</h1>
+            <p className="text-sm text-white/40">Privacy & Security</p>
           </div>
         </div>
       </div>
@@ -70,26 +72,26 @@ export default function Settings() {
       <div className="max-w-2xl mx-auto px-6 py-8">
         {/* Success Message */}
         {message && (
-          <div className="mb-6 p-4 bg-green-50 border border-green-200 text-green-600 rounded-2xl">
+          <div className="mb-6 p-4 bg-green-500/10 border border-green-500/20 text-green-400 rounded-2xl">
             {message}
           </div>
         )}
 
         {/* Privacy Settings */}
-        <div className="bg-white/70 backdrop-blur-xl border border-white/20 shadow-lg rounded-[2rem] p-6 mb-6">
+        <div className="bg-[#130f10] border border-white/10 rounded-[2rem] p-6 mb-6">
           <div className="flex items-center gap-3 mb-4">
-            <Lock size={24} className="text-indigo-600" />
-            <h2 className="text-xl font-black">Privacy</h2>
+            <Lock size={24} className="text-rose-400" />
+            <h2 className="text-xl font-black text-white">Privacy</h2>
           </div>
 
           <div className="space-y-4">
             {/* Private Account Toggle */}
-            <div className="flex items-center justify-between p-4 bg-slate-50 rounded-xl">
+            <div className="flex items-center justify-between p-4 bg-white/5 border border-white/10 rounded-xl">
               <div className="flex items-center gap-3">
-                {isPrivate ? <EyeOff size={20} /> : <Eye size={20} />}
+                {isPrivate ? <EyeOff size={20} className="text-white/60" /> : <Eye size={20} className="text-white/60" />}
                 <div>
-                  <p className="font-bold">Private Account</p>
-                  <p className="text-sm text-slate-500">
+                  <p className="font-bold text-white">Private Account</p>
+                  <p className="text-sm text-white/50">
                     {isPrivate 
                       ? 'Only approved followers can see your posts'
                       : 'Anyone can see your posts'
@@ -101,7 +103,7 @@ export default function Settings() {
                 onClick={handlePrivacyToggle}
                 disabled={loading}
                 className={`relative w-14 h-8 rounded-full transition-colors ${
-                  isPrivate ? 'bg-indigo-600' : 'bg-slate-300'
+                  isPrivate ? ROSE_GRADIENT : 'bg-white/20'
                 }`}
               >
                 <div
@@ -115,23 +117,23 @@ export default function Settings() {
         </div>
 
         {/* Blocked Users */}
-        <div className="bg-white/70 backdrop-blur-xl border border-white/20 shadow-lg rounded-[2rem] p-6">
+        <div className="bg-[#130f10] border border-white/10 rounded-[2rem] p-6">
           <div className="flex items-center gap-3 mb-4">
-            <Ban size={24} className="text-red-600" />
-            <h2 className="text-xl font-black">Blocked Users</h2>
+            <Ban size={24} className="text-red-400" />
+            <h2 className="text-xl font-black text-white">Blocked Users</h2>
           </div>
 
           {blockedUsers.length === 0 ? (
             <div className="text-center py-8">
-              <Shield size={48} className="mx-auto text-slate-300 mb-3" />
-              <p className="text-slate-500">No blocked users</p>
+              <Shield size={48} className="mx-auto text-white/20 mb-3" />
+              <p className="text-white/50">No blocked users</p>
             </div>
           ) : (
             <div className="space-y-3">
               {blockedUsers.map((user) => (
                 <div
                   key={user.id}
-                  className="flex items-center justify-between p-4 bg-slate-50 rounded-xl"
+                  className="flex items-center justify-between p-4 bg-white/5 border border-white/10 rounded-xl hover:border-rose-500/30 transition-all"
                 >
                   <div className="flex items-center gap-3">
                     {user.photoURL ? (
@@ -141,16 +143,16 @@ export default function Settings() {
                         className="w-10 h-10 rounded-full object-cover"
                       />
                     ) : (
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-400 to-pink-400" />
+                      <div className={`w-10 h-10 rounded-full ${ROSE_GRADIENT}`} />
                     )}
                     <div>
-                      <p className="font-bold">{user.displayName}</p>
-                      <p className="text-sm text-slate-500">@{user.username}</p>
+                      <p className="font-bold text-white">{user.displayName}</p>
+                      <p className="text-sm text-white/50">@{user.username}</p>
                     </div>
                   </div>
                   <button
                     onClick={() => handleUnblock(user.id)}
-                    className="px-4 py-2 bg-slate-200 text-slate-700 rounded-full text-sm font-bold hover:bg-slate-300"
+                    className="px-4 py-2 bg-white/10 text-white/70 rounded-full text-sm font-bold hover:bg-white/20 transition-colors"
                   >
                     Unblock
                   </button>

@@ -227,7 +227,7 @@ export default function ResetPassword() {
                 <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center">
                   <Zap size={22} fill="currentColor" />
                 </div>
-                <span className="font-black text-2xl tracking-tighter uppercase italic">Vois</span>
+                <span className="font-black text-2xl tracking-tighter uppercase italic">Pixora</span>
              </div>
              <h1 className="text-5xl font-black text-white leading-tight tracking-tighter">
                Create New <br/> Password.

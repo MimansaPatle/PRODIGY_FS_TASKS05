@@ -5,15 +5,15 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
-import Home from './pages/Home';
-import Profile from './pages/Profile';
-import Explore from './pages/Explore';
-import Messages from './pages/Messages';
-import Notifications from './pages/Notifications';
-import PostDetail from './components/PostDetail';
+import Home from './pages/Home_Rose'; // Using rose-themed Home
+import Profile from './pages/Profile_Rose'; // Using rose-themed Profile
+import Explore from './pages/Explore_Rose'; // Using rose-themed Explore
+import Messages from './pages/Messages_Rose'; // Using rose-themed Messages
+import Notifications from './pages/Notifications_Rose'; // Using rose-themed Notifications
+import PostDetail from './components/PostDetail_Rose'; // Using rose-themed PostDetail
 import UserProfile from './components/UserProfile';
 import EditProfile from './pages/EditProfile';
-import HashtagPage from './pages/HashtagPage';
+import HashtagPage from './pages/HashtagPage_Rose'; // Using rose-themed HashtagPage
 import Settings from './pages/Settings';
 
 function App() {

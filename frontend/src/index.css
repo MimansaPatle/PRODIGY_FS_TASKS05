@@ -8,7 +8,7 @@
   }
   
   body {
-    @apply bg-vois-snow text-deep-slate font-sans antialiased;
+    @apply bg-[#0a0708] text-white font-sans antialiased;
     margin: 0;
     padding: 0;
   }
@@ -19,81 +19,72 @@
 }
 
 @layer components {
-  /* Vois Glass Surface */
+  /* Rose Theme Glass Surface */
   .glass-surface {
-    @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-lg;
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg;
   }
   
   .glass-surface-dark {
-    @apply bg-slate-900/40 backdrop-blur-md border border-white/10 shadow-xl;
+    @apply bg-[#130f10] backdrop-blur-md border border-white/5 shadow-xl;
   }
   
-  /* Vois Input Styles */
-  .vois-input {
-    @apply bg-white border border-slate-200 rounded-full px-6 py-3 text-sm font-medium placeholder:text-muted-slate focus:ring-4 focus:ring-electric-indigo/20 focus:border-electric-indigo transition-all duration-300 shadow-sm;
+  /* Rose Input Styles */
+  .rose-input {
+    @apply bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-sm font-bold text-white placeholder:text-white/20 focus:border-[#e93e68] transition-all duration-300;
   }
   
-  .vois-textarea {
-    @apply bg-white border border-slate-200 rounded-2xl px-6 py-4 text-sm font-medium placeholder:text-muted-slate focus:ring-4 focus:ring-electric-indigo/20 focus:border-electric-indigo transition-all duration-300 resize-none shadow-sm;
+  .rose-textarea {
+    @apply bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-sm font-bold text-white placeholder:text-white/20 focus:border-[#e93e68] transition-all duration-300 resize-none;
   }
   
-  /* Vois Button Styles */
-  .vois-btn-primary {
-    @apply bg-electric-indigo text-white font-black text-xs uppercase tracking-[0.3em] px-8 py-4 rounded-full hover:bg-indigo-600 transition-all duration-300 transform hover:scale-105 hover:shadow-xl shadow-lg;
+  /* Rose Button Styles */
+  .rose-btn-primary {
+    @apply bg-gradient-to-r from-[#e93e68] to-[#f45d7d] text-white font-black text-xs uppercase tracking-[0.3em] px-8 py-4 rounded-2xl hover:brightness-110 transition-all duration-300 transform active:scale-[0.98] shadow-xl shadow-rose-500/20;
   }
   
-  .vois-btn-secondary {
-    @apply glass-surface text-deep-slate font-black text-xs uppercase tracking-[0.3em] px-8 py-4 rounded-full hover:bg-white/90 transition-all duration-300 transform hover:scale-105 hover:shadow-xl;
+  .rose-btn-secondary {
+    @apply bg-[#130f10] border border-white/10 text-white/70 font-black text-xs uppercase tracking-[0.3em] px-8 py-4 rounded-2xl hover:bg-white/5 hover:border-rose-500/30 transition-all duration-300;
   }
   
-  /* Vois Card Styles */
-  .vois-card {
-    @apply bg-white rounded-[2rem] shadow-lg border border-white/20 transition-all duration-500 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:-translate-y-1;
+  /* Rose Card Styles */
+  .rose-card {
+    @apply bg-[#130f10] rounded-[3rem] shadow-2xl border border-white/5 transition-all duration-500 ease-in-out hover:border-rose-500/30 hover:shadow-[0_0_40px_rgba(233,62,104,0.2)];
   }
   
-  .vois-card-large {
-    @apply bg-white rounded-[2rem] shadow-xl border border-white/20 transition-all duration-500 ease-in-out hover:scale-[1.01] hover:shadow-2xl;
+  .rose-card-large {
+    @apply bg-[#130f10] rounded-[3rem] shadow-2xl border border-white/5 transition-all duration-500 ease-in-out;
   }
   
-  /* Avatar with Live Indicator */
-  .vois-avatar {
-    @apply relative rounded-full p-1 bg-gradient-to-r from-electric-indigo to-rose-pink shadow-lg;
+  /* Avatar with Rose Glow */
+  .rose-avatar {
+    @apply relative rounded-full p-1 bg-gradient-to-r from-[#e93e68] to-[#f45d7d] shadow-lg shadow-rose-500/20;
   }
   
-  .vois-avatar.offline img {
-    @apply grayscale;
-  }
-  
-  .vois-avatar-live::after {
+  .rose-avatar-live::after {
     content: '';
-    @apply absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 rounded-full border-2 border-white shadow-sm;
+    @apply absolute bottom-0 right-0 w-3 h-3 bg-rose-500 rounded-full border-2 border-[#0a0708] shadow-sm;
   }
   
   /* Typography Hierarchy */
-  .vois-display {
-    @apply text-5xl font-black tracking-tighter text-deep-slate;
+  .rose-display {
+    @apply text-5xl font-black tracking-tighter text-white italic;
   }
   
-  .vois-brand {
+  .rose-brand {
     @apply text-xl font-black italic tracking-tighter uppercase;
   }
   
-  .vois-section-label {
-    @apply text-xs font-black uppercase tracking-[0.3em] text-muted-slate;
+  .rose-section-label {
+    @apply text-xs font-black uppercase tracking-[0.3em] text-rose-300/40;
   }
   
-  .vois-meta {
-    @apply text-xs font-black tracking-[0.2em] uppercase;
-  }
-  
-  /* Floating Glass Dock */
-  .vois-dock {
-    @apply fixed bottom-8 left-1/2 transform -translate-x-1/2 h-16 glass-surface rounded-full shadow-2xl px-6 flex items-center gap-6 z-50;
+  .rose-meta {
+    @apply text-xs font-black tracking-[0.2em] uppercase text-white/30;
   }
   
   /* Skeleton Loading */
-  .vois-skeleton {
-    @apply animate-pulse bg-slate-200 rounded-[2rem];
+  .rose-skeleton {
+    @apply animate-pulse bg-white/5 rounded-[2rem];
   }
   
   /* Beautiful Animations */
@@ -107,17 +98,8 @@
   }
   
   /* Gradient Text */
-  .gradient-text {
-    @apply bg-gradient-to-r from-electric-indigo to-rose-pink bg-clip-text text-transparent;
-  }
-  
-  /* Masonry Grid Helpers */
-  .masonry-item-tall {
-    grid-row-end: span 2;
-  }
-  
-  .masonry-item-wide {
-    grid-column-end: span 2;
+  .gradient-text-rose {
+    @apply bg-gradient-to-r from-[#e93e68] to-[#f45d7d] bg-clip-text text-transparent;
   }
   
   /* Beautiful Scrollbars */
@@ -126,14 +108,31 @@
   }
   
   .custom-scrollbar::-webkit-scrollbar-track {
-    @apply bg-slate-100 rounded-full;
+    @apply bg-[#130f10] rounded-full;
   }
   
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    @apply bg-electric-indigo rounded-full;
+    @apply bg-[#e93e68] rounded-full;
   }
   
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    @apply bg-indigo-600;
+    @apply bg-[#f45d7d];
+  }
+  
+  /* Legacy Vois styles for compatibility */
+  .vois-input {
+    @apply rose-input;
+  }
+  
+  .vois-textarea {
+    @apply rose-textarea;
+  }
+  
+  .vois-btn-primary {
+    @apply rose-btn-primary;
+  }
+  
+  .vois-card {
+    @apply rose-card;
   }
 }

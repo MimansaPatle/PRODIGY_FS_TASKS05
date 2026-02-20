@@ -1,11 +1,13 @@
 # Dependencies
 node_modules/
-venv/
+*/node_modules/
 
-# Environment variables (SENSITIVE - NEVER COMMIT)
+# Environment variables
 .env
 .env.local
-.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
 backend/.env
 frontend/.env
 
@@ -36,24 +38,27 @@ MANIFEST
 venv/
 env/
 ENV/
+backend/venv/
 
-# Firebase (SENSITIVE - NEVER COMMIT)
+# Firebase & Sensitive Keys
 firebase-admin-key.json
 .firebaserc
 firebase.json
+*.pem
+*.key
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
-*.code-workspace
 
 # Logs
-*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+lerna-debug.log*
+*.log
 
 # Build outputs
 frontend/dist/
@@ -63,11 +68,11 @@ frontend/build/
 .DS_Store
 Thumbs.db
 
-# Backup files
-*_backup.*
-*.backup
-*.bak
+# Database
+*.db
+*.sqlite
+*.sqlite3
 
-# Scripts
-*.bat
-*.sh
+# Test files
+backend/test_*.py
+backend/test_*.html

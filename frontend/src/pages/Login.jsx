@@ -48,126 +48,87 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#fafbfc] flex items-center justify-center p-6 relative overflow-hidden font-sans">
-      {/* Dynamic Background Elements */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-100 rounded-full blur-[120px] opacity-60 animate-pulse" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-pink-100 rounded-full blur-[120px] opacity-60 animate-pulse" />
+    <div className="min-h-screen w-full bg-[#0a0708] flex items-center justify-center p-6 font-sans selection:bg-[#e93e68] selection:text-white">
+      {/* Rose-themed Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none overflow-hidden">
+        <div className="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] bg-[#e93e68]/10 rounded-full blur-[150px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-[#f45d7d]/5 rounded-full blur-[120px]" />
+      </div>
 
-      <div className="w-full max-w-4xl bg-white/40 backdrop-blur-2xl border border-white/50 rounded-[3rem] shadow-2xl flex flex-col md:flex-row overflow-hidden relative z-10">
-        
-        {/* Left Side: Branding/Visual */}
-        <div className="hidden md:flex md:w-1/2 bg-indigo-600 p-12 flex-col justify-between relative overflow-hidden">
-          <div className="absolute inset-0 opacity-20 pointer-events-none">
-             <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover" alt="" />
+      <div className="w-full max-w-md bg-[#130f10] border border-white/5 p-10 rounded-[3rem] shadow-2xl relative z-10">
+        {/* Logo and Branding */}
+        <div className="flex flex-col items-center mb-12">
+          <div className="w-16 h-16 bg-gradient-to-r from-[#e93e68] to-[#f45d7d] rounded-2xl flex items-center justify-center text-white mb-6 rotate-12 shadow-[0_0_40px_rgba(233,62,104,0.4)]">
+            <Zap size={32} fill="currentColor" />
           </div>
-          <div className="relative z-10">
-             <div className="flex items-center gap-3 text-white mb-8">
-                <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center">
-                  <Zap size={22} fill="currentColor" />
-                </div>
-                <span className="font-black text-2xl tracking-tighter uppercase italic">Vois</span>
-             </div>
-             <h1 className="text-5xl font-black text-white leading-tight tracking-tighter">
-               Visuals with <br/> a Voice.
-             </h1>
-          </div>
-          <div className="relative z-10">
-            <p className="text-white/70 text-sm font-medium leading-relaxed max-w-xs">
-              Join the most visually inspired community of curators and visual storytellers.
-            </p>
-          </div>
+          <h1 className="text-4xl font-black text-white tracking-tighter uppercase italic mb-2">Pixora</h1>
+          <p className="text-rose-300/40 text-[10px] font-bold uppercase tracking-[0.4em]">Rose Frequency Curation</p>
         </div>
 
-        {/* Right Side: Form */}
-        <div className="flex-1 p-8 md:p-16 flex flex-col justify-center">
-          <div className="mb-10 text-center md:text-left">
-            <h2 className="text-3xl font-black text-slate-900 tracking-tight mb-2">
-              Welcome Back
-            </h2>
-            <p className="text-slate-400 text-sm font-medium">
-              Enter your insights to continue
-            </p>
+        {/* Error Message */}
+        {error && (
+          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 text-red-400 rounded-2xl text-sm font-medium">
+            {error}
           </div>
+        )}
 
-          {/* Error Message */}
-          {error && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-600 rounded-2xl text-sm font-medium">
-              {error}
-            </div>
-          )}
-
-          <form className="space-y-5" onSubmit={handleSubmit}>
-            <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Email Insight</label>
-              <div className="relative">
-                <Mail size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" />
-                <input 
-                  type="email" 
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="alex@vois.design" 
-                  className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:ring-4 focus:ring-indigo-50 focus:border-indigo-600 transition-all font-bold text-slate-800"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Secure Key</label>
-              <div className="relative">
-                <Lock size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" />
-                <input 
-                  type={showPassword ? "text" : "password"} 
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  placeholder="••••••••" 
-                  className="w-full pl-12 pr-12 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:ring-4 focus:ring-indigo-50 focus:border-indigo-600 transition-all font-bold text-slate-800"
-                  required
-                />
-                <button 
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-300 hover:text-indigo-600 transition-colors"
-                >
-                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                </button>
-              </div>
-              <div className="text-right">
-                <Link 
-                  to="/forgot-password"
-                  state={{ email: formData.email }}
-                  className="text-xs text-indigo-600 hover:text-indigo-700 font-medium hover:underline underline-offset-2"
-                >
-                  Forgot Password?
-                </Link>
-              </div>
-            </div>
-
+        <form className="space-y-6" onSubmit={handleSubmit}>
+          <input 
+            type="email" 
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Neural Link (Email)" 
+            className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl outline-none focus:border-[#e93e68] text-white font-bold transition-all placeholder:text-white/20"
+            required
+          />
+          
+          <div className="relative">
+            <input 
+              type={showPassword ? "text" : "password"} 
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Pass-Key" 
+              className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl outline-none focus:border-[#e93e68] text-white font-bold transition-all placeholder:text-white/20"
+              required
+            />
             <button 
-              disabled={loading}
-              className="w-full bg-indigo-600 text-white py-5 rounded-[2rem] font-black text-sm uppercase tracking-widest shadow-xl shadow-indigo-600/20 hover:bg-indigo-700 hover:-translate-y-1 active:translate-y-0 transition-all flex items-center justify-center gap-3 disabled:opacity-50"
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-white/30 hover:text-[#e93e68] transition-colors"
             >
-              {loading ? 'Processing...' : (
-                <>
-                  Enter Vois
-                  <ArrowRight size={18} />
-                </>
-              )}
+              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
-          </form>
+          </div>
 
-          <p className="mt-10 text-center text-sm font-medium text-slate-400">
-            Don't have a studio yet?{' '}
+          <div className="text-right">
             <Link 
-              to="/register"
-              className="text-indigo-600 font-black hover:underline underline-offset-4"
+              to="/forgot-password"
+              state={{ email: formData.email}}
+              className="text-xs text-[#e93e68] hover:text-[#f45d7d] font-medium hover:underline underline-offset-2"
             >
-              Create One
+              Forgot Pass-Key?
             </Link>
-          </p>
-        </div>
+          </div>
+
+          <button 
+            disabled={loading}
+            className="w-full bg-gradient-to-r from-[#e93e68] to-[#f45d7d] text-white py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:brightness-110 active:scale-[0.98] transition-all shadow-xl shadow-rose-500/20 disabled:opacity-50"
+          >
+            {loading ? 'Syncing...' : 'Initiate Session'}
+          </button>
+        </form>
+
+        <p className="mt-8 text-center text-[10px] font-bold text-white/30 uppercase tracking-widest">
+          New here?{' '}
+          <Link 
+            to="/register"
+            className="text-[#e93e68] hover:underline"
+          >
+            Join the Studio
+          </Link>
+        </p>
       </div>
     </div>
   );
